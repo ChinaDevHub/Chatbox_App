@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomSocialIcon extends StatelessWidget {
-  CustomSocialIcon({
+  const CustomSocialIcon({
     super.key,
     required this.path,
-    required this.icon_edge_color,
+    required this.iconEdgeColor,
   });
   final String path;
-  final Color icon_edge_color;
+  final Color iconEdgeColor;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +16,7 @@ class CustomSocialIcon extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.transparent,
-          border: Border.all(color: icon_edge_color),
+          border: Border.all(color: iconEdgeColor),
         ),
         child: Image.asset(path, width: 50, height: 50),
       ),

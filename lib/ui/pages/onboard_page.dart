@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_mentor/ui/pages/sign_in_page.dart';
 import 'package:my_mentor/ui/pages/sign_up_page.dart';
 import 'package:my_mentor/ui/widgets/custom_or_divider.dart';
@@ -8,12 +9,8 @@ import 'package:my_mentor/ui/widgets/custom_text_edit.dart';
 class OnboardPage extends StatelessWidget {
   const OnboardPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
+Widget screenColor(){
+  return Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Colors.deepPurple, Colors.black],
@@ -21,11 +18,15 @@ class OnboardPage extends StatelessWidget {
                 end: Alignment.bottomCenter,
               ),
             ),
-          ),
-          SafeArea(
+          );
+}
+
+
+Widget screenElement(BuildContext context){
+  return SafeArea(
             child: Column(
               children: [
-                const SizedBox(height: 15),
+                15.verticalSpace,
                 Image.asset('assets/onboard_chat.png', fit: BoxFit.cover),
                 const SizedBox(height: 120),
                 Text(
@@ -37,7 +38,7 @@ class OnboardPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 250),
+                250.verticalSpace,
                 Text(
                   'Our chat app is the perfect way to stay\nconnected with friends and family.',
                   textAlign: TextAlign.center,
@@ -46,29 +47,29 @@ class OnboardPage extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                const SizedBox(height: 40),
+                40.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomSocialIcon(
                       path: "assets/facebook.png",
-                      icon_edge_color: Colors.white,
+                      iconEdgeColor: Colors.white,
                     ),
-                    SizedBox(width: 20),
+                    20.horizontalSpace,
                     CustomSocialIcon(
                       path: 'assets/google.png',
-                      icon_edge_color: Colors.white,
+                      iconEdgeColor: Colors.white,
                     ),
-                    SizedBox(width: 20),
+                    20.horizontalSpace,
                     CustomSocialIcon(
                       path: 'assets/ios.png',
-                      icon_edge_color: Colors.white,
+                      iconEdgeColor: Colors.white,
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                40.verticalSpace,
                 CustomOrDivider(),
-                SizedBox(height: 10),
+                40.verticalSpace,
                 // Mail button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -99,7 +100,7 @@ class OnboardPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 35),
+                40.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -130,7 +131,17 @@ class OnboardPage extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          );
+}
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          screenColor(),
+          screenElement(context),
         ],
       ),
     );

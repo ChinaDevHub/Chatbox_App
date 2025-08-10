@@ -5,10 +5,10 @@ class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => _Splash_PageState();
+  State<SplashPage> createState() => SplashPageState();
 }
 
-class _Splash_PageState extends State<SplashPage> {
+class SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
@@ -22,7 +22,6 @@ class _Splash_PageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("CLicked...");
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomInput extends StatelessWidget {
   CustomInput({
     super.key,
-    required this.ct,
+    this.ct,
     required this.checkForm,
     this.obscureText = false,
     this.suffic_icon,
@@ -11,7 +11,7 @@ class CustomInput extends StatelessWidget {
     this.validator,
   });
 
-  final TextEditingController ct;
+  final TextEditingController? ct;
   final void Function(String)? checkForm;
   final bool obscureText;
   final IconButton? suffic_icon;
