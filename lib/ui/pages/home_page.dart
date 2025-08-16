@@ -1,339 +1,232 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_mentor/controllers/login_controller.dart';
 import 'package:my_mentor/ui/pages/messages_page.dart';
 import 'package:my_mentor/ui/widgets/custom_bottom_nav_bar.dart';
-import 'package:my_mentor/ui/widgets/custom_text_edit.dart';
+import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
+import 'package:my_mentor/utils/constants/app_icon.dart';
+import 'package:my_mentor/utils/constants/app_image.dart';
+import 'package:my_mentor/utils/constants/app_padding.dart';
+import 'package:my_mentor/utils/constants/app_radius.dart';
+import 'package:my_mentor/utils/constants/app_scroll_direction.dart';
+import 'package:my_mentor/utils/constants/app_sizes.dart';
+import 'package:my_mentor/utils/constants/app_text.dart';
+import 'package:my_mentor/utils/constants/app_text_fontweight.dart';
+import 'package:my_mentor/utils/helpers/go.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
-  final List<Widget> pages = [];
-
-  final List<String> storyImages = [
-    'assets/white_back_ME.jpg',
-    'assets/fuad_photo.jpg',
-    'assets/status_photo_3.png',
-    'assets/status_photo_4.png',
-    'assets/status_photo_5.png',
-    'assets/status_photo.png',
-    'assets/leqa.jpg',
-    'assets/sukurov.jpg',
-    'assets/seferov.jpg',
-    'assets/zloyme.jpg',
-  ];
-
-  final List<String> messageTitle = [
-    'Chingiz Zaidov',
-    'Fuad Atashov',
-    'Team Align',
-    'John Ahraham',
-    'Sabila Sayma',
-    'Alney Budovski',
-    'Murad Kahayev',
-    'Murad Shukurov',
-    'Senan Seferov',
-    'You',
-  ];
-
-  final List<String> messageSubTitle = [
-    'How are you today?',
-    "Don't miss to attend the meeting.",
-    'Hey!Can you join the meeting?',
-    'How are you today?',
-    'Have a good day!',
-    'can you come here?',
-    "Don't forget the file!",
-    'Can we talk now?',
-    'Good luck today!',
-    'Message yourself',
-  ];
-
-  final List<String> statusNames = [
-    'My Status',
-    'Fuad',
-    'Marina',
-    'John',
-    'Sabila',
-    'Alney',
-    'Murad',
-    'Murad',
-    'Senan',
-    'You',
-  ];
-
-  final List<Color> storyEdgeColors = [
-    Colors.grey,
-    Colors.blue,
-    Colors.blue.shade300,
-    Colors.pinkAccent,
-    Colors.yellow,
-    Colors.greenAccent.shade700,
-    Colors.blue.shade300,
-    Colors.pinkAccent,
-    Colors.yellow,
-    Colors.greenAccent.shade700,
-  ];
-
-  //AppBar Part
-  PreferredSize appBar() {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(60),
-      child: AppBar(
-        leading: Image.asset('assets/Search.png', fit: BoxFit.scaleDown),
-        backgroundColor: Colors.black,
-        title: Text(
-          "Home",
-          style: CustomTextEdit.NORMAL_TEXT_STYLE(
-            color: Colors.white,
-            fontSize: 22,
-          ),
+  @override
+  Widget build(BuildContext context) {
+    final watch = context.watch<LoginController>();
+    return Scaffold(
+      backgroundColor: AppColor.black,
+      appBar: AppBar(
+        leading: Image.asset(AppImage.searchIcon, fit: BoxFit.scaleDown),
+        backgroundColor: AppColor.black,
+        title: CustomText(
+          text: AppText.home,
+          color: AppColor.white,
+          fontSize: AppSizes.s22,
         ),
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: AppPadding.h20,
             child: CircleAvatar(
-              backgroundImage: AssetImage(storyImages.first),
-              radius: 23,
+              backgroundImage: AssetImage(AppImage.storyImages.first),
+              radius: AppSizes.s23,
             ),
           ),
         ],
       ),
-    );
-  }
-
-  // Body Part
-  Widget body() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      physics: BouncingScrollPhysics(),
-      child: Column(
-        children: [
-          40.verticalSpace,
-          buildStoryPart(storyImages, storyEdgeColors , statusNames),
-          40.verticalSpace,
-          buildMessagesPart(storyImages, messageTitle, messageSubTitle),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final watchData = context.watch<LoginController>();
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: appBar(),
-      body: body(),
-      bottomNavigationBar: CustomBottomNavBar(
-        onTap: watchData.onTapped,
-        currentIndex: watchData.selectedIndex,
-      ),
-    );
-  }
-}
-
-
-
-
-
-Widget buildStoryPart(
-  List<String> storyImages,
-  List<Color> storyEdgeColors,
-  List<String> statusNames,
-) {
-  return SizedBox(
-    height: 150,
-    child: ListView.builder(
-      scrollDirection: Axis.horizontal,
-      physics: BouncingScrollPhysics(),
-      itemCount: storyImages.length,
-      itemBuilder: (context, i) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 10, left: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  border: Border.all(color: storyEdgeColors[i], width: 3),
-                  shape: BoxShape.circle,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(storyImages[i]),
-                    maxRadius: 50,
-                  ),
-                ),
-              ),
-              15.verticalSpace,
-              Center(
-                child: Text(
-                  statusNames[i],
-                  style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                    color: Colors.white,
-                    fontSize: 17,
-                  ),
-                  //maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    ),
-  );
-}
-
-
-Widget buildMessagesPart(
-  List<String> storyImages,
-  List<String> messageTitle,
-  List<String> messageSubTitle,
-){
-  return DecoratedBox(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0),
-              ),
-            ),
-            child: Column(
-              children: [
-                10.verticalSpace,
-                Divider(
-                  color: Colors.grey,
-                  endIndent: 180,
-                  indent: 180,
-                  thickness: 3,
-                ),
-                20.verticalSpace,
-                ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: storyImages.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Slidable(
-                        key: ValueKey(index),
-                        endActionPane: ActionPane(
-                          motion: StretchMotion(),
-                          children: [
-                            //Notifications Icon
-                            SlidableAction(
-                              padding: EdgeInsets.all(10),
-                              borderRadius: BorderRadius.circular(25),
-                              onPressed: (context) {
-                                print('Notification is clicked...');
-                              },
-                              icon: Icons.notifications,
-                              label: 'Notifications',
-                              backgroundColor: Colors.blue,
-                              foregroundColor: Colors.white,
+      body: SingleChildScrollView(
+        scrollDirection: AppScrollDirection.v,
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            AppSizes.s40.verticalSpace,
+            SizedBox(
+              height: AppSizes.s150,
+              child: ListView.builder(
+                scrollDirection: AppScrollDirection.h,
+                physics: BouncingScrollPhysics(),
+                itemCount: AppImage.storyImages.length,
+                itemBuilder: (context, i) {
+                  return Padding(
+                    padding: AppPadding.r10l15,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppColor.storyEdgeColors[i],
+                              width: AppSizes.s3,
                             ),
-                            //Delete Icon
-                            SlidableAction(
-                              borderRadius: BorderRadius.circular(25),
-                              onPressed: (context) {
-                                print('Delete is clicked...');
-                              },
-                              icon: Icons.delete,
-                              label: 'Delete',
-                              backgroundColor: Colors.red,
-                            ),
-                          ],
-                        ),
-                        child: Card(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            shape: BoxShape.circle,
                           ),
-                          child: ListTile(
-                            onTap:
-                                () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder:
-                                        (builder) => MessagesPage(
-                                          profileIcon: CircleAvatar(
-                                            backgroundImage: AssetImage(
-                                              storyImages[index],
-                                            ),
-                                            radius: 20,
-                                          ),
-                                          profileName: Text(
-                                            messageTitle[index],
-                                            style:
-                                                CustomTextEdit.NORMAL_TEXT_STYLE(
-                                                  color: Colors.black,
-                                                  fontSize: 20,
-                                                ),
-                                          ),
+                          child: Padding(
+                            padding: AppPadding.all5,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                AppImage.storyImages[i],
+                              ),
+                              maxRadius: AppSizes.s50,
+                            ),
+                          ),
+                        ),
+                        AppSizes.s15.verticalSpace,
+                        Center(
+                          child: CustomText(
+                            text: AppText.statusNames[i],
+                            color: AppColor.white,
+                            fontSize: AppSizes.s17,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            AppSizes.s40.verticalSpace,
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColor.white,
+                borderRadius: AppRadius.upCircle,
+              ),
+              child: Column(
+                children: [
+                  AppSizes.s10.verticalSpace,
+                  Divider(
+                    color: AppColor.grey,
+                    endIndent: AppSizes.s180,
+                    indent: AppSizes.s180,
+                    thickness: AppSizes.s3,
+                  ),
+                  AppSizes.s20.verticalSpace,
+                  ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: AppScrollDirection.v,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: AppImage.storyImages.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: AppPadding.v10,
+                        child: Slidable(
+                          key: ValueKey(index),
+                          endActionPane: ActionPane(
+                            motion: StretchMotion(),
+                            children: [
+                              //Notifications Icon
+                              SlidableAction(
+                                padding: AppPadding.all10,
+                                borderRadius: AppRadius.all25,
+                                onPressed: (context) {
+                                  log(AppText.notificationClicked);
+                                },
+                                icon: AppIcon.notif,
+                                label: AppText.notifications,
+                                backgroundColor: AppColor.blue,
+                                foregroundColor: AppColor.white,
+                              ),
+                              //Delete Icon
+                              SlidableAction(
+                                borderRadius: AppRadius.all25,
+                                onPressed: (context) {
+                                  log(AppText.deleteClicked);
+                                },
+                                icon: AppIcon.delete,
+                                label: AppText.delete,
+                                backgroundColor: AppColor.red,
+                              ),
+                            ],
+                          ),
+                          child: Card(
+                            color: AppColor.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: AppRadius.all15,
+                            ),
+                            child: ListTile(
+                              onTap:
+                                  () => Go.to(
+                                    context,
+                                    MessagesPage(
+                                      profileIcon: CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                          AppImage.storyImages[index],
                                         ),
+                                        radius: AppSizes.s20,
+                                      ),
+                                      profileName: CustomText(
+                                        text: AppText.messageTitle[index],
+                                        color: AppColor.black,
+                                        fontSize: AppSizes.s20,
+                                      ),
+                                    ),
+                                  ),
+                              leading: Transform.scale(
+                                scale: AppSizes.s1_25,
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                    AppImage.storyImages[index],
                                   ),
                                 ),
-                            leading: Transform.scale(
-                              scale: 1.25,
-                              child: CircleAvatar(
-                                backgroundImage: AssetImage(storyImages[index]),
-                                //maxRadius: 25,
                               ),
-                            ),
-                            title: Text(
-                              messageTitle[index],
-                              style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              title: CustomText(
+                                text: AppText.messageTitle[index],
+                                color: AppColor.black,
+                                fontSize: AppSizes.s20,
+                                fontWeight: AppTextFontWeight.bold,
                               ),
-                            ),
-                            subtitle: Text(
-                              messageSubTitle[index],
-                              style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                                color: Colors.blueGrey.shade600,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
+                              subtitle: CustomText(
+                                color: AppColor.blueGreyShade600,
+                                text: AppText.messageSubTitle[index],
+                                fontSize: AppSizes.s12,
+                                fontWeight: AppTextFontWeight.w600,
                               ),
-                            ),
-                            trailing: Column(
-                              children: [
-                                Text('2 min ago'),
-                                SizedBox(height: 5),
-                                index % 2 == 0
-                                    ? CircleAvatar(
-                                      backgroundColor: Colors.red.shade700,
-                                      child: Center(
-                                        child: Text(
-                                          '4',
-                                          style:
-                                              CustomTextEdit.NORMAL_TEXT_STYLE(
-                                                color: Colors.white,
-                                                fontSize: 10,
-                                              ),
+                              trailing: Column(
+                                children: [
+                                  Text(AppText.twoMinAgo),
+                                  AppSizes.s5.verticalSpace,
+                                  index % 2 == 0
+                                      ? CircleAvatar(
+                                        backgroundColor: AppColor.redShade700,
+                                        child: Center(
+                                          child: CustomText(
+                                            text: AppText.four,
+                                            color: AppColor.white,
+                                            fontSize: AppSizes.s10,
+                                          ),
                                         ),
-                                      ),
-                                      maxRadius: 12,
-                                    )
-                                    : Text(''),
-                              ],
+                                        maxRadius: 12,
+                                      )
+                                      : Text(''),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          );
+          ],
+        ),
+      ),
+      bottomNavigationBar: CustomBottomNavBar(
+        onTap: watch.onTapped,
+        currentIndex: watch.selectedIndex,
+      ),
+    );
+  }
 }

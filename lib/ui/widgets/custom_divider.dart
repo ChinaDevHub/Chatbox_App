@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_mentor/utils/constants/app_radius.dart';
 
 class CustomDivider extends StatelessWidget {
-  CustomDivider({
+  const CustomDivider({
     super.key,
     this.indent = 0,
     this.endIndent = 0,
@@ -19,7 +20,7 @@ class CustomDivider extends StatelessWidget {
       child: Divider(
         color: divColor,
         thickness: thickness,
-        radius: BorderRadius.circular(10),
+        radius: AppRadius.all10,
         endIndent: endIndent,
         indent: indent,
       ),

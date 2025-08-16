@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_mentor/ui/widgets/custom_divider.dart';
+import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
+import 'package:my_mentor/utils/constants/app_sizes.dart';
+import 'package:my_mentor/utils/constants/app_text.dart';
 
 class CustomOrDivider extends StatelessWidget {
   const CustomOrDivider({super.key});
@@ -9,10 +13,24 @@ class CustomOrDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        10.horizontalSpace,
-        CustomDivider(indent: 20, endIndent: 10,divColor: Colors.white,thickness: 2,),
-        const Text('OR', style: TextStyle(color: Colors.white70, fontSize: 20)),
-        CustomDivider(indent: 10, endIndent: 20,divColor: Colors.white,thickness: 2,),
+        AppSizes.s10.horizontalSpace,
+        CustomDivider(
+          indent: AppSizes.s20,
+          endIndent: AppSizes.s10,
+          divColor: AppColor.white,
+          thickness: AppSizes.s2,
+        ),
+        CustomText(
+          text: AppText.or,
+          color: AppColor.white70,
+          fontSize: AppSizes.s20,
+        ),
+        CustomDivider(
+          indent: AppSizes.s10,
+          endIndent: AppSizes.s20,
+          divColor: AppColor.white,
+          thickness: AppSizes.s2,
+        ),
       ],
     );
   }

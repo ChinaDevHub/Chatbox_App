@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
+import 'package:my_mentor/utils/constants/app_padding.dart';
+import 'package:my_mentor/utils/constants/app_sizes.dart';
 
 class CustomSocialIcon extends StatelessWidget {
   const CustomSocialIcon({
@@ -11,14 +14,14 @@ class CustomSocialIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: AppPadding.all10,
       child: DecoratedBox(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.transparent,
+          color: AppColor.transparent,
           border: Border.all(color: iconEdgeColor),
         ),
-        child: Image.asset(path, width: 50, height: 50),
+        child: Image.asset(path, width: AppSizes.s50, height: AppSizes.s50),
       ),
     );
   }

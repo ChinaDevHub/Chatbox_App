@@ -1,147 +1,128 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_mentor/ui/pages/sign_in_page.dart';
 import 'package:my_mentor/ui/pages/sign_up_page.dart';
 import 'package:my_mentor/ui/widgets/custom_or_divider.dart';
 import 'package:my_mentor/ui/widgets/custom_social_icon.dart';
-import 'package:my_mentor/ui/widgets/custom_text_edit.dart';
+import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
+import 'package:my_mentor/utils/constants/app_padding.dart';
+import 'package:my_mentor/utils/constants/app_radius.dart';
+import 'package:my_mentor/utils/constants/app_sizes.dart';
+import 'package:my_mentor/utils/constants/app_image.dart';
+import 'package:my_mentor/utils/constants/app_text.dart';
+import 'package:my_mentor/utils/constants/app_text_fontweight.dart';
+import 'package:my_mentor/utils/helpers/go.dart';
 
 class OnboardPage extends StatelessWidget {
   const OnboardPage({super.key});
 
-Widget screenColor(){
-  return Container(
-            decoration: const BoxDecoration(
+  @override
+  Widget build(BuildContext context) {
+    log('Passed to onboard page');
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.deepPurple, Colors.black],
+                colors: [AppColor.deepPurple, AppColor.black],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
             ),
-          );
-}
-
-
-Widget screenElement(BuildContext context){
-  return SafeArea(
+          ),
+          SafeArea(
             child: Column(
               children: [
-                15.verticalSpace,
-                Image.asset('assets/onboard_chat.png', fit: BoxFit.cover),
-                const SizedBox(height: 120),
-                Text(
-                  'Connect friends',
-                  textAlign: TextAlign.center,
-                  style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                    color: Colors.white,
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
-                  ),
+                AppSizes.s15.vertical,
+                Image.asset(AppImage.onboardChatLogo, fit: BoxFit.cover),
+                AppSizes.s120.vertical,
+                CustomText(
+                  text: AppText.connectFriend,
+                  color: AppColor.white,
+                  fontSize: AppSizes.s45,
                 ),
-                250.verticalSpace,
-                Text(
-                  'Our chat app is the perfect way to stay\nconnected with friends and family.',
-                  textAlign: TextAlign.center,
-                  style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                    color: Colors.white70,
-                    fontSize: 18,
-                  ),
+                AppSizes.s250.vertical,
+                CustomText(
+                  text: AppText.onboardDescription,
+                  color: AppColor.white70,
+                  fontSize: AppSizes.s18,
                 ),
-                40.verticalSpace,
+                AppSizes.s40.vertical,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomSocialIcon(
-                      path: "assets/facebook.png",
-                      iconEdgeColor: Colors.white,
+                      path: AppImage.socialIconFB,
+                      iconEdgeColor: AppColor.white,
                     ),
-                    20.horizontalSpace,
+                    AppSizes.s20.horizontal,
                     CustomSocialIcon(
-                      path: 'assets/google.png',
-                      iconEdgeColor: Colors.white,
+                      path: AppImage.socialIconGoogle,
+                      iconEdgeColor: AppColor.white,
                     ),
-                    20.horizontalSpace,
+                    AppSizes.s20.horizontal,
                     CustomSocialIcon(
-                      path: 'assets/ios.png',
-                      iconEdgeColor: Colors.white,
+                      path: AppImage.socialIconIos,
+                      iconEdgeColor: AppColor.white,
                     ),
                   ],
                 ),
-                40.verticalSpace,
+                AppSizes.s40.vertical,
                 CustomOrDivider(),
-                40.verticalSpace,
+                AppSizes.s40.vertical,
                 // Mail button
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                  padding: AppPadding.h40,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (builder) => SignUpPage()),
-                      );
+                      Go.to(context, const SignUpPage());
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
+                      backgroundColor: AppColor.white,
+                      foregroundColor: AppColor.black,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        //! deyis all20
+                        borderRadius: AppRadius.all20,
                       ),
-                      minimumSize: const Size.fromHeight(50),
+                      //minimumSize: Size.fromHeight(AppSizes.s50),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Sign up with mail',
-                        style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
+                      padding: AppPadding.all8,
+                      child: CustomText(
+                        text: AppText.buttonText,
+                        color: AppColor.black,
+                        fontSize: AppSizes.s20,
                       ),
                     ),
                   ),
                 ),
-                40.verticalSpace,
+                AppSizes.s40.vertical,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Existing account?',
-                      style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                        color: Colors.white70,
-                        fontSize: 16,
-                      ),
+                    CustomText(
+                      text: AppText.existAccount,
+                      color: AppColor.white70,
+                      fontSize: AppSizes.s16,
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (builder) => SignInPage()),
-                        );
+                        Go.to(context, const SignInPage());
                       },
-                      child: Text(
-                        'Log In',
-                        style: CustomTextEdit.NORMAL_TEXT_STYLE(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      child: CustomText(
+                        fontWeight: AppTextFontWeight.bold,
+                        text: AppText.loginText,
+                        color: AppColor.white,
+                        fontSize: AppSizes.s16,
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-          );
-}
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          screenColor(),
-          screenElement(context),
+          ),
         ],
       ),
     );

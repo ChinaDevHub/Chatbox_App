@@ -1,5 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:my_mentor/ui/widgets/custom_text_edit.dart';
+import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
+import 'package:my_mentor/utils/constants/app_sizes.dart';
+import 'package:my_mentor/utils/constants/app_text.dart';
+import 'package:my_mentor/utils/constants/app_text_fontweight.dart';
 
 class CustomForgetPassword extends StatelessWidget {
   const CustomForgetPassword({super.key});
@@ -7,15 +13,13 @@ class CustomForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => print('Forget clicked...'),
+      onTap: () => log(AppText.forgetClicked),
       child: Center(
-        child: Text(
-          'Forgot password?',
-          style: CustomTextEdit.NORMAL_TEXT_STYLE(
-            color: Colors.teal,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+        child: CustomText(
+          text: AppText.forgotPassword,
+          color: AppColor.teal,
+          fontSize: AppSizes.s18,
+          fontWeight: AppTextFontWeight.bold,
         ),
       ),
     );

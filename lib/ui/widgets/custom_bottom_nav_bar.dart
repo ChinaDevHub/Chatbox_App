@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
+import 'package:my_mentor/utils/constants/app_icon.dart';
+import 'package:my_mentor/utils/constants/app_sizes.dart';
+import 'package:my_mentor/utils/constants/app_text.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
@@ -12,17 +16,29 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      unselectedItemColor: Colors.blueGrey,
-      selectedItemColor: Colors.teal.shade800,
-      backgroundColor: Colors.white,
-      unselectedFontSize: 13,
-      selectedFontSize: 18,
+      unselectedItemColor: AppColor.blueGrey,
+      selectedItemColor: AppColor.tealShade800,
+      backgroundColor: AppColor.white,
+      unselectedFontSize: AppSizes.s13,
+      selectedFontSize: AppSizes.s18,
       type: BottomNavigationBarType.fixed,
       items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.message_rounded),label: 'Messajes'),
-        BottomNavigationBarItem(icon: Icon(Icons.call_sharp), label: 'Calls'),
-        BottomNavigationBarItem(icon: Icon(Icons.account_box),label: 'Contacts'),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+        BottomNavigationBarItem(
+          icon: Icon(AppIcon.messageIcon),
+          label: AppText.messages,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(AppIcon.callIcon),
+          label: AppText.calls,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(AppIcon.accountIcon),
+          label: AppText.contacts,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(AppIcon.settingIcon),
+          label: AppText.settings,
+        ),
       ],
       onTap: onTap,
       currentIndex: currentIndex,

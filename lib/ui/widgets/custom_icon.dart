@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
 
 class CustomIcon extends StatelessWidget {
   const CustomIcon({
@@ -7,7 +8,7 @@ class CustomIcon extends StatelessWidget {
     required this.onPressed,
     this.iconSize = 25,
     this.toolTip,
-    this.iconColor = Colors.black,
+    this.iconColor = AppColor.black,
   });
 
   final Icon icon;

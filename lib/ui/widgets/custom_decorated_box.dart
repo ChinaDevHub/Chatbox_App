@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:my_mentor/ui/widgets/custom_text_edit.dart';
+import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/utils/constants/app_color.dart';
+import 'package:my_mentor/utils/constants/app_radius.dart';
+import 'package:my_mentor/utils/constants/app_sizes.dart';
+import 'package:my_mentor/utils/constants/app_text_fontweight.dart';
 
 class CustomDecoratedBox extends StatelessWidget {
-  CustomDecoratedBox({
+  const CustomDecoratedBox({
     super.key,
-    required this.container_color,
-    required this.text_color,
+    required this.containerColor,
+    required this.textColor,
     required this.text,
   });
 
-  final Color container_color;
-  final Color text_color;
+  final Color containerColor;
+  final Color textColor;
   final String text;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: AppSizes.s50,
       width: MediaQuery.of(context).size.width * 0.8,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: container_color,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.grey.shade400),
+          color: containerColor,
+          borderRadius: AppRadius.all20,
+          border: Border.all(color: AppColor.greyShade400),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: CustomTextEdit.NORMAL_TEXT_STYLE(
-              color: text_color,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+          child: CustomText(
+            text: text,
+            color: textColor,
+            fontSize: AppSizes.s20,
+            fontWeight: AppTextFontWeight.bold,
           ),
         ),
       ),
