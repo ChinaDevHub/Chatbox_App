@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_mentor/controllers/login_controller.dart';
-import 'package:my_mentor/ui/pages/home_page.dart';
-import 'package:my_mentor/ui/widgets/custom_decorated_box.dart';
-import 'package:my_mentor/ui/widgets/custom_hint_text.dart';
-import 'package:my_mentor/ui/widgets/custom_text.dart';
-import 'package:my_mentor/ui/widgets/custom_input.dart';
+import 'package:my_mentor/view/pages/home_page.dart';
+import 'package:my_mentor/view/widgets/custom_decorated_box.dart';
+import 'package:my_mentor/view/widgets/custom_hint_text.dart';
+import 'package:my_mentor/view/widgets/custom_text.dart';
+import 'package:my_mentor/view/widgets/custom_input.dart';
 import 'package:my_mentor/utils/constants/app_color.dart';
 import 'package:my_mentor/utils/constants/app_duration.dart';
 import 'package:my_mentor/utils/constants/app_icon.dart';
@@ -28,13 +28,6 @@ class SignUpPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         backgroundColor: AppColor.white,
-        leading: IconButton(
-          onPressed: () {
-            read.clearFields();
-            Go.pop(context);
-          },
-          icon: Icon(AppIcon.arrowBackIos, size: AppSizes.s25),
-        ),
       ),
       backgroundColor: AppColor.white,
       body: SafeArea(

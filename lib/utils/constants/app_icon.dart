@@ -19,4 +19,24 @@ class AppIcon {
   static const IconData callIcon = Icons.call_sharp;
   static const IconData settingIcon = Icons.settings;
   static const IconData accountIcon = Icons.account_box;
+  static const IconData close = Icons.close;
+  static const List<IconData> modalBottomIcons = [
+    Icons.camera_alt_outlined,
+    Icons.insert_drive_file_outlined,
+    Icons.poll_outlined,
+    Icons.image_outlined,
+    Icons.contact_page_outlined,
+    Icons.location_on_outlined,
+  ];
+  static const List<IconData> settingIconList = [
+    Icons.key,
+    Icons.chat_bubble_outline,
+    Icons.notifications_none,
+    Icons.help_outline,
+    Icons.swap_vert,
+    Icons.person_outline,
+  ];
+  static const IconData qrCode = Icons.qr_code_scanner;
+  static const IconData chatBubble = Icons.chat_sharp;
+  static const IconData moreHoriz = Icons.more_horiz;
 }

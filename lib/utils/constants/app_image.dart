@@ -1,14 +1,14 @@
 class AppImage {
   AppImage._();
   //Splash Page
-  static  String chatBoxLogo = 'assets/chatbox_logo.png';
+  static const String chatBoxLogo = 'assets/chatbox_logo.png';
 
   //OnBoard Page
-  static String onboardChatLogo = 'assets/onboard_chat.png';
-  static String socialIconFB = 'assets/facebook.png';
-  static String socialIconGoogle = 'assets/google.png';
-  static String socialIconIos = 'assets/ios.png';
-  static String searchIcon = 'assets/Search.png';
+  static const String onboardChatLogo = 'assets/onboard_chat.png';
+  static const String socialIconFB = 'assets/facebook.png';
+  static const String socialIconGoogle = 'assets/google.png';
+  static const String socialIconIos = 'assets/ios.png';
+  static const String searchIcon = 'assets/Search.png';
   static const List<String> storyImages = [
     'assets/white_back_ME.jpg',
     'assets/fuad_photo.jpg',

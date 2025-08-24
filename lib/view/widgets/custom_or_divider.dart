@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_mentor/ui/widgets/custom_divider.dart';
-import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/view/widgets/custom_divider.dart';
+import 'package:my_mentor/view/widgets/custom_text.dart';
 import 'package:my_mentor/utils/constants/app_color.dart';
 import 'package:my_mentor/utils/constants/app_sizes.dart';
 import 'package:my_mentor/utils/constants/app_text.dart';

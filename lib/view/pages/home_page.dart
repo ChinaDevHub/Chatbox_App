@@ -1,12 +1,11 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_mentor/controllers/login_controller.dart';
-import 'package:my_mentor/ui/pages/messages_page.dart';
-import 'package:my_mentor/ui/widgets/custom_bottom_nav_bar.dart';
-import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/view/pages/messages_page.dart';
+import 'package:my_mentor/view/widgets/custom_bottom_nav_bar.dart';
+import 'package:my_mentor/view/widgets/custom_text.dart';
 import 'package:my_mentor/utils/constants/app_color.dart';
 import 'package:my_mentor/utils/constants/app_icon.dart';
 import 'package:my_mentor/utils/constants/app_image.dart';

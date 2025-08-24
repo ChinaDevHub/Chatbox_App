@@ -8,22 +8,25 @@ class CustomDivider extends StatelessWidget {
     this.endIndent = 0,
     required this.divColor,
     required this.thickness,
+    this.radius= AppRadius.all10,
+    this.height=0,
   });
 
   final double indent;
   final double endIndent;
   final Color divColor;
   final double thickness;
+  final BorderRadius radius;
+  final double height;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Divider(
-        color: divColor,
-        thickness: thickness,
-        radius: AppRadius.all10,
-        endIndent: endIndent,
-        indent: indent,
-      ),
+    return Divider(
+      height: height,
+      color: divColor,
+      thickness: thickness,
+      radius: radius,
+      endIndent: endIndent,
+      indent: indent,
     );
   }
 }

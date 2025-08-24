@@ -107,4 +107,61 @@ class AppText {
   static const String settings = 'Settings';
   static const String forgotPassword = 'Forgot password?';
   static const String or = 'OR';
+  static const String shareContent = 'Share Content';
+  static const String empty = '';
+  static const List<String> modalTitleList = [
+    'Camera',
+    'Documents',
+    'Create a poll',
+    'Media',
+    'Contact',
+    'Location',
+  ];
+
+  static const List<String> modalSubtitleleList = [
+    '',
+    'Share your files',
+    'Create a poll for ant querry',
+    'Share photos and videos',
+    'Share your contacts',
+    'Share your location',
+  ];
+  static const String cingizZaidov = 'Chingiz Zaidov';
+  static const String nazrulIslam = 'Nazrul Islam';
+  static const String neverGiveUp = 'Never give up 💪';
+  static const List<String> settingTitleList = [
+    'Account',
+    'Chat',
+    'Notifications',
+    'Help',
+    'Storage and data',
+    'Invite a friend',
+  ];
+  static const List<String> settingSubtitleList = [
+    'Privacy,security,change number',
+    'Chat history,theme,walpapers',
+    'Messages,group and others',
+    'Help center, contact us , privacy policy',
+    'Network usage, storage usage',
+  ];
+  static const String dry = '@don\'t repeat yourself';
+  static const String zaidovcingizatgmailcom = 'zaidovcingiz2019@gmail.com';
+  static const String adressWithSteet = 'Guba , Yuri Gagarin street , home 31';
+  static const String phoneNumber010 = '(+994) 10-395-09-18';
+  static const String mediaShared = 'Media Shared';
+  static const String viewAll = 'View All';
+
+  static const List<String> userProfileTitles = [
+    'Display Name',
+    'Email Address',
+    'Address',
+    'Phone Number',
+  ];
+
+  static const List<String> userProfileSubtitles = [
+    'Zaidov Chingiz',
+    'zaidovcingiz2019@gmail.com',
+    'Guba, Yuri Gagarin street-31',
+    '(+994) 10-395-09-18',
+  ];
 }

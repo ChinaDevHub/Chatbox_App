@@ -38,5 +38,9 @@ class AppColor {
   static Color greyShade200 = Colors.grey.shade200;
   static Color blueGrey = Colors.blueGrey;
   static Color tealShade800 = Colors.teal.shade800;
-  static const transparent = Colors.transparent;
+  static const Color transparent = Colors.transparent;
+  static Color indigoShade900 = Colors.indigo.shade900;
+  static const Color green = Colors.green;
+  static Color tealShade900 = Colors.teal.shade900;
+  static Color greyShade600 = Colors.grey.shade600;
 }

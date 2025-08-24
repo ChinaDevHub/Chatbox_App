@@ -38,6 +38,8 @@ class AppSizes {
   static const double s60 = 60.0;
   static const double s0_7 = 0.70;
   static const double s400 = 400.0;
+  static const double s80 = 80.0;
+  static const double s350 = 350.0;
 }
 
 extension ScreenSize on double{

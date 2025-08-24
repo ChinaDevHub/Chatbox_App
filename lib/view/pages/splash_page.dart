@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_mentor/ui/pages/onboard_page.dart';
+import 'package:my_mentor/view/pages/onboard_page.dart';
 import 'package:my_mentor/utils/constants/app_color.dart';
 import 'package:my_mentor/utils/constants/app_duration.dart';
 import 'package:my_mentor/utils/constants/app_image.dart';
@@ -13,6 +13,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashPageState extends State<SplashPage> {
+  //Page - da ilk calisan metod
   @override
   void initState() {
     super.initState();

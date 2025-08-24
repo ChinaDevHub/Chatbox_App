@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_mentor/models/message_model.dart';
-import 'package:my_mentor/ui/widgets/custom_icon.dart';
-import 'package:my_mentor/ui/widgets/custom_text.dart';
+import 'package:my_mentor/view/widgets/custom_icon.dart';
+import 'package:my_mentor/view/widgets/custom_text.dart';
 import 'package:my_mentor/utils/constants/app_color.dart';
 import 'package:my_mentor/utils/constants/app_icon.dart';
 import 'package:my_mentor/utils/constants/app_padding.dart';
@@ -11,6 +11,7 @@ import 'package:my_mentor/utils/constants/app_radius.dart';
 import 'package:my_mentor/utils/constants/app_scroll_direction.dart';
 import 'package:my_mentor/utils/constants/app_sizes.dart';
 import 'package:my_mentor/utils/constants/app_text.dart';
+import 'package:my_mentor/utils/constants/app_text_fontweight.dart';
 import 'package:my_mentor/utils/helpers/go.dart';
 
 typedef TextEditCont = TextEditingController;
@@ -31,6 +32,7 @@ class MessagesPage extends StatefulWidget {
 
 class _MessagesPageState extends State<MessagesPage> {
   final TextEditCont _controller = TextEditCont();
+  final ScrollController _scrollController = ScrollController();
 
   //Mesaj gondermek
   void sendMessage() {
@@ -45,6 +47,87 @@ class _MessagesPageState extends State<MessagesPage> {
       );
     });
     _controller.clear();
+
+    //Mesaj asai dussun
+    Future.delayed(Duration(milliseconds: 100), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  void bottomPopUpMenu() {
+    showModalBottomSheet(
+      //surusdurub baxlamaq
+      enableDrag: true,
+      context: context,
+      //qalan hisseye toxun close et
+      isDismissible: true,
+      builder: (context) {
+        return Column(
+          children: [
+            AppSizes.s15.vertical,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CustomIcon(
+                  icon: Icon(AppIcon.close),
+                  onPressed: () {
+                    Future.delayed(Duration(milliseconds: 200), () {
+                      if (mounted) {
+                        Go.pop(context);
+                      }
+                    });
+                  },
+                ),
+                CustomText(
+                  text: AppText.shareContent,
+                  color: AppColor.black,
+                  fontSize: AppSizes.s25,
+                ),
+                AppSizes.s15.horizontal,
+                CustomText(
+                  text: AppText.empty,
+                  color: AppColor.transparent,
+                  fontSize: AppSizes.s10,
+                ),
+              ],
+            ),
+            AppSizes.s20.vertical,
+            Flexible(
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: AppText.modalTitleList.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    shadowColor: AppColor.black,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        maxRadius: AppSizes.s30,
+                        backgroundColor: AppColor.greyShade300,
+                        child: Icon(
+                          AppIcon.modalBottomIcons[index],
+                          size: AppSizes.s25,
+                        ),
+                      ),
+                      title: CustomText(
+                        text: AppText.modalTitleList[index],
+                        color: AppColor.black,
+                        fontSize: AppSizes.s22,
+                        fontWeight: AppTextFontWeight.bold,
+                      ),
+                      subtitle: Text(AppText.modalSubtitleleList[index]),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -84,6 +167,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   icon: Icon(AppIcon.callIcon),
                   onPressed: () {
                     log(AppText.callClicked);
+                    //Go.to(context, SettingPage());
                   },
                 ),
                 Padding(
@@ -118,7 +202,8 @@ class _MessagesPageState extends State<MessagesPage> {
             AppSizes.s20.verticalSpace,
             Expanded(
               child: ListView.builder(
-                shrinkWrap: true,
+                controller: _scrollController,
+                //shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: AppScrollDirection.v,
                 itemCount: AppText.messageList.length,
@@ -241,12 +326,9 @@ class _MessagesPageState extends State<MessagesPage> {
             Row(
               children: [
                 AppSizes.s10.horizontalSpace,
-                CustomIcon(
-                  icon: Icon(AppIcon.attachFile),
-                  onPressed: () {
-                    log(AppText.fileClicked);
-                  },
-                ),
+                CustomIcon(icon: Icon(AppIcon.attachFile), onPressed: () {
+                  bottomPopUpMenu();
+                }),
                 AppSizes.s10.horizontalSpace,
                 Expanded(
                   child: SizedBox(
